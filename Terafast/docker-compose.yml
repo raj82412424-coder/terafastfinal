@@ -1,0 +1,15 @@
+services:
+  terabox-bot:
+    build: .
+    restart: unless-stopped
+    init: true
+    env_file:
+      - .env
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - terabox_data:/app/data
+    stop_grace_period: 30s
+
+volumes:
+  terabox_data:
