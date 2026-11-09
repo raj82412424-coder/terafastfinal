@@ -26,7 +26,6 @@ user session add kiya gaya hai.
 - Parallel Telegram download (1 MiB ranges, resume) + parallel TeraBox upload
   (4 MiB parts, host failover).
 - Encrypted SQLite storage for TeraBox cookies and Telegram session strings.
-- Live log dashboard with secret redaction.
 
 ## Commands
 
@@ -85,14 +84,12 @@ public channel me add karna optional hai — user session fallback khud use hota
 
 ```bash
 cp .env.example .env
-# .env me secrets bharo; production me strong LOG_WEB_TOKEN set karo
+# .env me secrets bharo
 docker compose up -d --build
 docker compose logs -f terabox-bot
 ```
 
-Compose persistent named volume `/app/data` mount karta hai. Dashboard host ke
-localhost par bind hota hai. Public karna ho to reverse proxy + HTTPS + strong
-`LOG_WEB_TOKEN` use karo.
+Compose persistent named volume `/app/data` mount karta hai. Koi web port open nahi hota.
 
 ## Environment variables
 
@@ -118,8 +115,6 @@ localhost par bind hota hai. Public karna ho to reverse proxy + HTTPS + strong
 | `AUTO_POLL_SECONDS` | `20` | Auto mode poll interval |
 | `PROGRESS_EDIT_INTERVAL` | `4` | Progress edit throttle |
 | `LINKS_PAGE_SIZE` | `10` | Links per page |
-| `LOG_WEB_HOST` / `LOG_WEB_PORT` | `127.0.0.1` / `8080` | Log dashboard |
-| `LOG_WEB_TOKEN` | — | Dashboard auth token |
 
 ## Data model
 
@@ -136,7 +131,6 @@ config.py               env configuration
 db.py                   SQLite layer
 terabox.py              TeraBox web client
 tgdl.py                 parallel Telegram downloader
-dashboard.py            live log dashboard
 handlers/               common, targets, batch, login, direct, router
 services/               pipeline, batch_engine, auto_engine, userbot, progress
 utils/                  formatting, links, queue, telegram, async helpers

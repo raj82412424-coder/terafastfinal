@@ -11,7 +11,6 @@ from pyrogram import Client
 
 import config
 import speedup  # noqa: F401  installs the media-session pool patch on import
-from dashboard import start_dashboard
 from handlers import register_handlers
 from services import auto_engine, batch_engine, userbot
 
@@ -41,7 +40,7 @@ _instance_lock = None
 
 
 def _acquire_instance_lock() -> None:
-    """Prevent duplicate bot processes sharing the same DATA_DIR and port."""
+    """Prevent duplicate bot processes sharing the same DATA_DIR."""
     global _instance_lock
     lock_path = config.DATA_DIR / ".bot.lock"
     _instance_lock = lock_path.open("a+", encoding="utf-8")
@@ -96,8 +95,5 @@ async def main() -> None:
 if __name__ == "__main__":
     _acquire_instance_lock()
     _cleanup_download_dir()
-    _, dashboard_url = start_dashboard()
-    display_url = dashboard_url.split("?", 1)[0]
-    suffix = " (auth token required)" if "?" in dashboard_url else ""
-    print(f"Bot started · live logs: {display_url}{suffix}", flush=True)
+    print("Bot started · logs stdout par aa rahe hain", flush=True)
     app.loop.run_until_complete(main())

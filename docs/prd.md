@@ -125,7 +125,6 @@ config.py               env configuration
 db.py                   SQLite access layer
 terabox.py              TeraBox web client (unchanged)
 tgdl.py                 parallel Telegram downloader (unchanged)
-dashboard.py            live log dashboard (unchanged)
 handlers/               common, targets, batch, login, direct, router
 services/               pipeline, batch_engine, auto_engine, userbot, progress
 utils/                  formatting, links, queue, async helpers

@@ -7,12 +7,8 @@ services:
       - .env
     environment:
       DATA_DIR: /app/data
-      LOG_WEB_HOST: 0.0.0.0
     volumes:
       - terabox_data:/app/data
-    # Keep the dashboard reachable only from the server itself by default.
-    ports:
-      - "127.0.0.1:8080:8080"
     stop_grace_period: 30s
 
 volumes:
